@@ -1,0 +1,43 @@
+*{
+  margin:0;
+  padding:0;
+}
+
+
+.calcbody{
+  display:flex;
+  flex-direction: column;
+  height:40rem;
+  width:30rem;
+  background-color: blue;
+  border-radius: 10px;
+}
+
+.buttons1, .buttons2{
+  dispaly:flex;
+  width:auto;
+  margin:1.5rem;
+}
+
+.buttons2{
+  background-color: red;
+  height:30rem;
+}
+
+.buttontop{
+  flex: 1 1 auto;
+}
+
+
+.screen{
+  height:8rem;
+  width:auto;
+  background-color: white;
+  margin:1.5rem;
+  border-radius: 10px;
+}
+
+.button{
+  height:22%;
+  width:22%;
+}
