@@ -7,25 +7,41 @@
 .calcbody{
   display:flex;
   flex-direction: column;
-  height:40rem;
-  width:30rem;
+  height:35rem;
+  width:28rem;
   background-color: blue;
   border-radius: 10px;
+  border:1px solid;
 }
 
 .buttons1, .buttons2{
-  dispaly:flex;
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
   width:auto;
   margin:1.5rem;
+  
+}
+
+.buttons1{
+  width:auto;
+  gap:5%;
+  height: 10%;
+  margin:1.5rem;
+  margin-bottom: 0;
+  margin-top:0;
 }
 
 .buttons2{
-  background-color: red;
+  
   height:30rem;
 }
 
 .buttontop{
+  height:100%;
   flex: 1 1 auto;
+  font-size:20px;
+  border:1px solid;
 }
 
 
@@ -35,9 +51,13 @@
   background-color: white;
   margin:1.5rem;
   border-radius: 10px;
+  border:1px solid;
 }
 
 .button{
-  height:22%;
+  height:18%;
   width:22%;
+  font-size:30px;
+  border:1px solid;
 }
+
