@@ -1,7 +1,7 @@
 *{
   margin:0;
   padding:0;
-  
+
 }
 
 body{
@@ -21,6 +21,7 @@ body{
   background-color: #461E52;
   border-radius: 10px;
   border:2px solid;
+  box-shadow: 5px 2px 15px black;
 }
 
 .screen{
@@ -31,13 +32,18 @@ body{
   border-radius: 10px;
   border:2px solid;
   font-size:60px;
+  text-align: right;
+}
+
+.screen p{
+  margin-top:12%;
 }
 
 .buttons1, .buttons2{
   display:flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  margin:1rem;  
+  margin:1rem;
  }
 
 .buttons1{
@@ -53,8 +59,8 @@ body{
   height:20rem;
   display:flex;
   align-content: inherit;
- 
-  
+
+
 }
 
 .buttontop{
