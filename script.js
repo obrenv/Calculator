@@ -21,6 +21,7 @@ let dot = document.getElementsByClassName('button button13')[0];
 let eval = document.getElementsByClassName('button button15')[0];
 
 let numberTemp = [];
+let operationsArray = [];
 
 let numberOne = 0;
 let numberTwo = 0;
@@ -34,6 +35,13 @@ let screen = document.getElementById('screenTxt');
 let display = function(){
 screen.textContent = numberTemp.join("");
 }
+
+
+
+
+
+
+
 
 num1.onclick = function(){
   numberTemp.push(1);
@@ -102,6 +110,22 @@ screen.innerHTML = "0   _   0&nbsp&nbsp&nbsp&nbsp";
 }
 
 
+let evaluateThis = function() {
+operationsArray.push("e");
+numberTwo = numberTemp.join("");
+
+if(operator==="add"){ result = add(numberOne,numberTwo)}
+else if(operator==="substract"){ result = substract(numberOne,numberTwo)}
+else if(operator==="multiply"){ result = multiply(numberOne,numberTwo)}
+else if(operator==="divide"){ result = divide(numberOne,numberTwo)}
+
+numberOne = result;
+numberTwo = 0;
+numberTemp = [];
+operator = undefined;
+screen.innerHTML = result;
+}
+
 
 
 
@@ -126,6 +150,10 @@ function divide(a,b){
 
 
 addBtn.onclick = function(){
+  if(operationsArray[operationsArray.length-1] !== "e" && operationsArray[operationsArray.length-1] !== undefined){
+    evaluateThis();
+  }
+operationsArray.push("o");
 
 if(counter === 0){
     if(operator === undefined){
@@ -151,6 +179,10 @@ else{
 }
 
 substractBtn.onclick = function(){
+  if(operationsArray[operationsArray.length-1] !== "e" && operationsArray[operationsArray.length-1] !== undefined){
+    evaluateThis();
+  }
+  operationsArray.push("o");
   if(counter === 0){
     if(operator === undefined){
       numberOne = numberTemp.join("");
@@ -173,6 +205,10 @@ substractBtn.onclick = function(){
 }
 
 multiplyBtn.onclick = function(){
+  if(operationsArray[operationsArray.length-1] !== "e" && operationsArray[operationsArray.length-1] !== undefined){
+    evaluateThis();
+  }
+  operationsArray.push("o");
 if(counter === 0){
     if(operator === undefined){
     numberOne = numberTemp.join("");
@@ -196,6 +232,10 @@ else{
 }
 
 divideBtn.onclick = function(){
+  if(operationsArray[operationsArray.length-1] !== "e" && operationsArray[operationsArray.length-1] !== undefined){
+    evaluateThis();
+  }
+  operationsArray.push("o");
 if(counter === 0){
   if(operator === undefined){
     numberOne = numberTemp.join("");
@@ -219,17 +259,4 @@ else{
 
 }
 
-eval.onclick = function(){
-numberTwo = numberTemp.join("");
-
-if(operator==="add"){ result = add(numberOne,numberTwo)}
-else if(operator==="substract"){ result = substract(numberOne,numberTwo)}
-else if(operator==="multiply"){ result = multiply(numberOne,numberTwo)}
-else if(operator==="divide"){ result = divide(numberOne,numberTwo)}
-
-numberOne = result;
-numberTwo = 0;
-numberTemp = [];
-operator = undefined;
-screen.innerHTML = result;
-}
+eval.onclick = evaluateThis;
