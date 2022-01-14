@@ -22,6 +22,7 @@ body{
   border-radius: 10px;
   border:2px solid;
   box-shadow: 5px 2px 15px black;
+  flex-shrink:0;
 }
 
 .screen{

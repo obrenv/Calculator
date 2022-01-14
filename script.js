@@ -20,53 +20,50 @@ let multiplyBtn = document.getElementsByClassName('button button8')[0];
 let dot = document.getElementsByClassName('button button13')[0];
 let eval = document.getElementsByClassName('button button15')[0];
 
-
-
 let numberTemp = [];
 
 let numberOne = 0;
 let numberTwo = 0;
 let operator;
 
+let result = 0;
+
 let counter = 0;
-
-
 
 let screen = document.getElementById('screenTxt');
 let display = function(){
 screen.textContent = numberTemp.join("");
 }
 
-
 num1.onclick = function(){
   numberTemp.push(1);
   display();
-  }
+}
 
 num2.onclick = function(){
   numberTemp.push(2);
   display();
-  }
+}
 
 num3.onclick = function(){
   numberTemp.push(3);
   display();
-  }
+}
 
 num4.onclick = function(){
   numberTemp.push(4);
   display();
-  }
+}
 
 num5.onclick = function(){
   numberTemp.push(5);
   display();
-  }
+}
 
 num6.onclick = function(){
   numberTemp.push(6);
   display();
-  }
+}
 
 num7.onclick = function(){
   numberTemp.push(7);
@@ -76,12 +73,17 @@ num7.onclick = function(){
 num8.onclick = function(){
   numberTemp.push(8);
   display();
-  }
+}
 
 num9.onclick = function(){
   numberTemp.push(9);
   display();
-  }
+}
+
+num0.onclick = function(){
+  numberTemp.push(0);
+  display();
+}
 
 
 
@@ -101,27 +103,88 @@ screen.innerHTML = "0   _   0&nbsp&nbsp&nbsp&nbsp";
 
 
 function add(a,b){
-  return a+b;
+  return parseInt(a) + parseInt(b);
 }
 
 
 function substract(a,b){
-  return a-b;
+  return parseInt(a) - parseInt(b);
 }
 
 
 function multiply(a,b){
-  return a*b;
+  return parseInt(a) * parseInt(b);
 }
 
 
 function divide(a,b){
-  return a/b;
+  return parseInt(a) / parseInt(b);
 }
 
 
 addBtn.onclick = function(){
-numberOne = numberTemp.join("")
-operator = "add"
-counter ++  
+  if(operator === undefined){
+    numberOne = numberTemp.join("");
+    operator = "add";
+    numberTemp = [];
+    counter ++;
+  }
+
+  else{
+    operator = "add"
+    numberTemp = [];
+  }
+}
+
+substractBtn.onclick = function(){
+  if(operator === undefined){
+  numberOne = numberTemp.join("");
+  operator = "substract";
+  numberTemp = [];
+  counter ++;
+  }
+
+  else{
+    operator = "substract";
+    numberTemp = [];
+  }
+}
+
+multiplyBtn.onclick = function(){
+    if(operator === undefined){
+    numberOne = numberTemp.join("");
+    operator = "multiply";
+    numberTemp = [];
+    counter ++;
+    }
+
+    else{
+      operator = "multiply";
+      numberTemp = [];
+    }
+}
+
+divideBtn.onclick = function(){
+  if(operator === undefined){
+    numberOne = numberTemp.join("");
+    operator = "divide";
+    numberTemp = [];
+    counter ++;
+  }
+
+  else{
+    operator = "divide"
+    numberTemp = [];
+  }
+}
+
+eval.onclick = function(){
+numberTwo = numberTemp.join("");
+
+if(operator==="add"){ result = add(numberOne,numberTwo)}
+else if(operator==="substract"){ result = substract(numberOne,numberTwo)}
+else if(operator==="multiply"){ result = multiply(numberOne,numberTwo)}
+else if(operator==="divide"){ result = divide(numberOne,numberTwo)}
+
+screen.innerHTML = result;
 }
