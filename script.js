@@ -95,6 +95,9 @@ del.onclick = function(){
 
 clr.onclick = function(){
 numberTemp = [];
+numberOne = 0;
+numberTwo = 0;
+result = 0;
 screen.innerHTML = "0   _   0&nbsp&nbsp&nbsp&nbsp";
 }
 
@@ -123,34 +126,54 @@ function divide(a,b){
 
 
 addBtn.onclick = function(){
-  if(operator === undefined){
-    numberOne = numberTemp.join("");
-    operator = "add";
-    numberTemp = [];
-    counter ++;
-  }
 
-  else{
-    operator = "add"
-    numberTemp = [];
-  }
+if(counter === 0){
+    if(operator === undefined){
+      numberOne = numberTemp.join("");
+      operator = "add";
+      numberTemp = [];
+      counter ++;
+    }
+
+    else{
+      operator = "add"
+      numberTemp = [];
+    }
+}
+
+else{
+  numberTwo = numberTemp.join("");
+  operator = "add";
+  numberTemp = [];
+}
+
+
 }
 
 substractBtn.onclick = function(){
-  if(operator === undefined){
-  numberOne = numberTemp.join("");
-  operator = "substract";
-  numberTemp = [];
-  counter ++;
+  if(counter === 0){
+    if(operator === undefined){
+      numberOne = numberTemp.join("");
+      operator = "substract";
+      numberTemp = [];
+      counter ++;
+    }
+
+    else{
+    operator = "substract";
+    numberTemp = [];
+    }
   }
 
   else{
+    numberTwo = numberTemp.join("");
     operator = "substract";
     numberTemp = [];
   }
 }
 
 multiplyBtn.onclick = function(){
+if(counter === 0){
     if(operator === undefined){
     numberOne = numberTemp.join("");
     operator = "multiply";
@@ -164,7 +187,16 @@ multiplyBtn.onclick = function(){
     }
 }
 
+else{
+  numberTwo = numberTemp.join("");
+  operator = "multiply";
+  numberTemp = [];
+}
+
+}
+
 divideBtn.onclick = function(){
+if(counter === 0){
   if(operator === undefined){
     numberOne = numberTemp.join("");
     operator = "divide";
@@ -178,6 +210,15 @@ divideBtn.onclick = function(){
   }
 }
 
+else{
+  numberTwo = numberTemp.join("");
+  operator = "divide";
+  numberTemp = [];
+}
+
+
+}
+
 eval.onclick = function(){
 numberTwo = numberTemp.join("");
 
@@ -186,5 +227,9 @@ else if(operator==="substract"){ result = substract(numberOne,numberTwo)}
 else if(operator==="multiply"){ result = multiply(numberOne,numberTwo)}
 else if(operator==="divide"){ result = divide(numberOne,numberTwo)}
 
+numberOne = result;
+numberTwo = 0;
+numberTemp = [];
+operator = undefined;
 screen.innerHTML = result;
 }
