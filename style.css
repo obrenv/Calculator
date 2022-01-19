@@ -33,11 +33,13 @@ body{
   border-radius: 10px;
   border:2px solid;
   font-size:60px;
-  text-align: right;
+  display:flex;
+  justify-content: flex-end;
 }
 
 .screen p{
   margin-top:12%;
+  
 }
 
 .buttons1, .buttons2{

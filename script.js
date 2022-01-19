@@ -1,3 +1,5 @@
+// buttons variables
+
 let num1 = document.getElementsByClassName('button button9')[0];
 let num2 = document.getElementsByClassName('button button10')[0];
 let num3 = document.getElementsByClassName('button button11')[0];
@@ -20,8 +22,12 @@ let multiplyBtn = document.getElementsByClassName('button button8')[0];
 let dot = document.getElementsByClassName('button button13')[0];
 let eval = document.getElementsByClassName('button button15')[0];
 
+
+// later operations variables
+
 let numberTemp = [];
 let operationsArray = [];
+let numbersPlusOperations = [];
 
 let numberOne = 0;
 let numberTwo = 0;
@@ -45,51 +51,61 @@ screen.textContent = numberTemp.join("");
 
 num1.onclick = function(){
   numberTemp.push(1);
+  numbersPlusOperations.push("num");
   display();
 }
 
 num2.onclick = function(){
   numberTemp.push(2);
+  numbersPlusOperations.push("num");
   display();
 }
 
 num3.onclick = function(){
   numberTemp.push(3);
+  numbersPlusOperations.push("num");
   display();
 }
 
 num4.onclick = function(){
   numberTemp.push(4);
+  numbersPlusOperations.push("num");
   display();
 }
 
 num5.onclick = function(){
   numberTemp.push(5);
+  numbersPlusOperations.push("num");
   display();
 }
 
 num6.onclick = function(){
   numberTemp.push(6);
+  numbersPlusOperations.push("num");
   display();
 }
 
 num7.onclick = function(){
   numberTemp.push(7);
+  numbersPlusOperations.push("num");
   display();
   }
 
 num8.onclick = function(){
   numberTemp.push(8);
+  numbersPlusOperations.push("num");
   display();
 }
 
 num9.onclick = function(){
   numberTemp.push(9);
+  numbersPlusOperations.push("num");
   display();
 }
 
 num0.onclick = function(){
   numberTemp.push(0);
+  numbersPlusOperations.push("num");
   display();
 }
 
@@ -106,6 +122,9 @@ numberTemp = [];
 numberOne = 0;
 numberTwo = 0;
 result = 0;
+operationsArray=[];
+counter = 0;
+numbersPlusOperations = [];
 screen.innerHTML = "0   _   0&nbsp&nbsp&nbsp&nbsp";
 }
 
@@ -150,6 +169,15 @@ function divide(a,b){
 
 
 addBtn.onclick = function(){
+
+//pressing plus twice and pressing before antering any numbers bug fix
+  if(numbersPlusOperations[numbersPlusOperations.length-1] === "ope" || numbersPlusOperations.length === 0){
+  return;
+  }
+  numbersPlusOperations.push("ope");
+
+
+
   if(operationsArray[operationsArray.length-1] !== "e" && operationsArray[operationsArray.length-1] !== undefined){
     evaluateThis();
   }
@@ -179,6 +207,12 @@ else{
 }
 
 substractBtn.onclick = function(){
+  if(numbersPlusOperations[numbersPlusOperations.length-1] === "ope" || numbersPlusOperations.length === 0){
+  return;
+  }
+  numbersPlusOperations.push("ope");
+
+
   if(operationsArray[operationsArray.length-1] !== "e" && operationsArray[operationsArray.length-1] !== undefined){
     evaluateThis();
   }
@@ -205,6 +239,13 @@ substractBtn.onclick = function(){
 }
 
 multiplyBtn.onclick = function(){
+
+
+  if(numbersPlusOperations[numbersPlusOperations.length-1] === "ope" || numbersPlusOperations.length === 0){
+  return;
+  }
+  numbersPlusOperations.push("ope");
+
   if(operationsArray[operationsArray.length-1] !== "e" && operationsArray[operationsArray.length-1] !== undefined){
     evaluateThis();
   }
@@ -232,6 +273,10 @@ else{
 }
 
 divideBtn.onclick = function(){
+  if(numbersPlusOperations[numbersPlusOperations.length-1] === "ope" || numbersPlusOperations.length === 0){
+  return;
+  }
+  numbersPlusOperations.push("ope");
   if(operationsArray[operationsArray.length-1] !== "e" && operationsArray[operationsArray.length-1] !== undefined){
     evaluateThis();
   }
