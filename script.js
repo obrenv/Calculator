@@ -37,6 +37,8 @@ let result = 0;
 
 let counter = 0;
 
+let dotCounter = 0;
+
 let screen = document.getElementById('screenTxt');
 let display = function(){
 screen.textContent = numberTemp.join("");
@@ -109,6 +111,17 @@ num0.onclick = function(){
   display();
 }
 
+dot.onclick = function(){
+if (dotCounter>0){
+  return;
+}
+
+  numberTemp.push(".");
+  numbersPlusOperations.push("num");
+  dotCounter++
+  display();
+}
+
 
 
 
@@ -117,7 +130,7 @@ del.onclick = function(){
   display();
 }
 
-clr.onclick = function(){
+let cleanSlate = function(){
 numberTemp = [];
 numberOne = 0;
 numberTwo = 0;
@@ -125,13 +138,26 @@ result = 0;
 operationsArray=[];
 counter = 0;
 numbersPlusOperations = [];
+dotCounter = 0;
+operator = undefined;}
+
+clr.onclick = function(){
+cleanSlate();
 screen.innerHTML = "0   _   0&nbsp&nbsp&nbsp&nbsp";
 }
 
 
 let evaluateThis = function() {
+
 operationsArray.push("e");
 numberTwo = numberTemp.join("");
+
+if(numberTemp.length === 1 && numberTemp[0]===0 && operator==="divide"){
+  cleanSlate();
+  screen.innerHTML = "No way my dude";
+return;
+}
+
 
 if(operator==="add"){ result = add(numberOne,numberTwo)}
 else if(operator==="substract"){ result = substract(numberOne,numberTwo)}
@@ -142,29 +168,31 @@ numberOne = result;
 numberTwo = 0;
 numberTemp = [];
 operator = undefined;
-screen.innerHTML = result;
+
+if(result%1===0){
+  screen.innerHTML = result;
 }
 
-
-
+else{
+screen.innerHTML = result.toFixed(2);
+}
+dotCounter = 0;
+}
 
 function add(a,b){
-  return parseInt(a) + parseInt(b);
+  return Number(a) + Number(b);
 }
-
 
 function substract(a,b){
-  return parseInt(a) - parseInt(b);
+  return Number(a) - Number(b);
 }
-
 
 function multiply(a,b){
-  return parseInt(a) * parseInt(b);
+  return Number(a) * Number(b);
 }
 
-
 function divide(a,b){
-  return parseInt(a) / parseInt(b);
+  return Number(a) / Number(b);
 }
 
 
@@ -176,37 +204,36 @@ addBtn.onclick = function(){
   }
   numbersPlusOperations.push("ope");
 
-
-
   if(operationsArray[operationsArray.length-1] !== "e" && operationsArray[operationsArray.length-1] !== undefined){
     evaluateThis();
   }
-operationsArray.push("o");
-
-if(counter === 0){
-    if(operator === undefined){
+    operationsArray.push("o");
+    dotCounter = 0;
+    if(counter === 0){
+      if(operator === undefined){
       numberOne = numberTemp.join("");
       operator = "add";
       numberTemp = [];
       counter ++;
     }
 
-    else{
+      else{
       operator = "add"
       numberTemp = [];
+      }
     }
-}
 
-else{
+  else{
   numberTwo = numberTemp.join("");
   operator = "add";
   numberTemp = [];
-}
+  }
 
 
 }
 
 substractBtn.onclick = function(){
+  dotCounter = 0;
   if(numbersPlusOperations[numbersPlusOperations.length-1] === "ope" || numbersPlusOperations.length === 0){
   return;
   }
@@ -236,11 +263,13 @@ substractBtn.onclick = function(){
     operator = "substract";
     numberTemp = [];
   }
+
+
 }
 
 multiplyBtn.onclick = function(){
 
-
+  dotCounter = 0;
   if(numbersPlusOperations[numbersPlusOperations.length-1] === "ope" || numbersPlusOperations.length === 0){
   return;
   }
@@ -273,6 +302,7 @@ else{
 }
 
 divideBtn.onclick = function(){
+  dotCounter = 0;
   if(numbersPlusOperations[numbersPlusOperations.length-1] === "ope" || numbersPlusOperations.length === 0){
   return;
   }
